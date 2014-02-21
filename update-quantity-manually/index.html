@@ -1,0 +1,59 @@
+<html>
+	<head>
+		<title>
+			How to adjust quantity manually
+		</title>
+
+		<script 
+		    src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"    
+		    type="text/javascript"></script>
+
+		<script type="text/javascript" 
+		    id="snipcart" 
+		    data-api-key="MzMxN2Y0ODMtOWNhMy00YzUzLWFiNTYtZjMwZTRkZDcxYzM4" 
+		    src="https://app.snipcart.com/scripts/snipcart.js"></script>
+
+		<link id="snipcart-theme" type="text/css"
+		    href="https://app.snipcart.com/themes/base/snipcart.css" 
+		    rel="stylesheet">
+	</head>
+
+	<body>
+		<nav>
+			<span class="snipcart-summary">
+			    Number of items: <span class="snipcart-total-items"></span>
+			    Total price: <span class="snipcart-total-price"></span>
+			</span>
+			
+			<a href="#" class="snipcart-checkout">View cart</a>
+		</nav>
+		<p>
+			<label>Quantity</label>
+			<select id="quantity">
+				<option value="1">1</option>
+				<option value="5">5</option>
+				<option value="10">10</option>
+				<option value="15">15</option>
+				<option value="20">20</option>
+			</select>
+		</p>
+
+		<p>
+			<button type="button"
+				class="snipcart-add-item"
+				data-item-name="Bacon"
+				data-item-price="10"
+				data-item-id="BACON"
+				data-item-url="/update-quantity-manually"
+				data-item-weight="20">Buy it now</button>
+		</p>
+
+		<script type="text/javascript">
+			$(function() {
+				$("#quantity").change(function() {
+					$(".snipcart-add-item").data("item-quantity", $(this).val());
+				});
+			});
+		</script>
+	</body>
+</html>

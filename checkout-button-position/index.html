@@ -1,0 +1,54 @@
+<html>
+	<head>
+		<title>
+			How to adjust quantity manually
+		</title>
+
+		<script 
+		    src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"    
+		    type="text/javascript"></script>
+
+		<script type="text/javascript" 
+		    id="snipcart" 
+		    data-api-key="YjdiNWIyOTUtZTIyMy00MWMwLTkwNDUtMzI1M2M2NTgxYjE0" 
+		    src="https://app.snipcart.com/scripts/snipcart.js"></script>
+
+		<link id="snipcart-theme" type="text/css"
+		    href="https://app.snipcart.com/themes/base/snipcart.css" 
+		    rel="stylesheet">
+
+	    <style>
+		    #snipcart-main-container #snipcart-cartitems-continue-top {
+		    	display: none;
+		    }
+
+		    #snipcart-main-container #snipcart-actions #snipcart-cartitems-checkout {
+		    	position: absolute;
+				top: 35px;
+				right: 20px;
+				margin: 0;
+		    }
+	    </style>
+	</head>
+
+	<body>
+		<nav>
+			<span class="snipcart-summary">
+			    Number of items: <span class="snipcart-total-items"></span>
+			    Total price: <span class="snipcart-total-price"></span>
+			</span>
+			
+			<a href="#" class="snipcart-checkout">View cart</a>
+		</nav>
+	
+		<p>
+			<button type="button"
+				class="snipcart-add-item"
+				data-item-name="Bacon"
+				data-item-price="10"
+				data-item-id="BACON"
+				data-item-url="/checkout-button-position"
+				data-item-weight="20">Buy it now</button>
+		</p>
+	</body>
+</html>

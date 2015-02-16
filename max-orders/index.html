@@ -46,7 +46,7 @@
       $.cookie('last_order_token', order.token, {expires: 10});
     });
 
-    Snipcart.execute('bind', 'item.adding', function (ev, item, items)) {
+    Snipcart.execute('bind', 'item.adding', function (ev, item, items) {
       var cookie = $.cookie('last_order_token');
 
       if (cookie) {

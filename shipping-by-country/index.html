@@ -1,0 +1,69 @@
+<html>
+    <head>
+        <title>
+            Triggering Location-Specific Shipping Methods with our JavaScript API
+        </title>
+
+        <script type="text/javascript"
+          src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+        
+        <script type="text/javascript" 
+          id="snipcart"
+          src="https://cdn.snipcart.com/scripts/snipcart.js"
+          data-api-key="YjdiNWIyOTUtZTIyMy00MWMwLTkwNDUtMzI1M2M2NTgxYjE0"></script>
+
+        <link type="text/css"
+          id="snipcart-theme"
+          href="https://cdn.snipcart.com/themes/base/snipcart.min.css" 
+          rel="stylesheet" />
+    </head>
+
+    <body>
+        <nav>
+            <span class="snipcart-summary">
+                Number of items: <span class="snipcart-total-items"></span>
+                Total price: <span class="snipcart-total-price"></span>
+            </span>
+            
+            <a href="#" class="snipcart-checkout">View cart</a>
+        </nav>
+  
+        <p>
+            <button type="button"
+                class="snipcart-add-item"
+                data-item-name="Bacon"
+                data-item-price="10"
+                data-item-id="BACON_COUNTRY"
+                data-item-url="/shipping-by-country"
+                data-item-weight="20">Buy it now</button>
+        </p>
+
+        <script type="text/javascript">
+            function setSnipcartShippingMethods(address) {
+                if (address.country == "US") {
+                    Snipcart.execute('config', 'allowed_shipping_methods', ['united-states']);
+                }
+                else if (address.country == "CA") {
+                    Snipcart.execute('config', 'allowed_shipping_methods', ['canada']);
+                }
+                else {
+                    Snipcart.execute('config', 'allowed_shipping_methods', ['worldwide']);
+                }
+            }
+
+            Snipcart.execute('bind', 'billingaddress.changed', function (address) {
+                if (address.shippingSameAsBilling) {
+                    setSnipcartShippingMethods(address);
+                }
+            });
+
+            Snipcart.execute('bind', 'shippingaddress.changed', function (address) {
+               setSnipcartShippingMethods(address); 
+            });
+
+            Snipcart.execute('bind', 'cart.ready', function (cart) {
+                setSnipcartShippingMethods(cart.order.shippingAddress);
+            });
+        </script>
+    </body>
+</html>

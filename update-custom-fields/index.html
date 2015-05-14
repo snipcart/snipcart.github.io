@@ -1,0 +1,117 @@
+<html>
+	<head>
+		<title>
+			How to adjust quantity manually
+		</title>
+
+		<script
+		    src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"
+		    type="text/javascript"></script>
+
+		<script type="text/javascript"
+		    id="snipcart"
+		    data-api-key="YjdiNWIyOTUtZTIyMy00MWMwLTkwNDUtMzI1M2M2NTgxYjE0"
+		    src="https://app.snipcart.com/scripts/snipcart.js"></script>
+
+		<link id="snipcart-theme" type="text/css"
+		    href="https://app.snipcart.com/themes/base/snipcart.css"
+		    rel="stylesheet">
+	</head>
+
+	<body>
+		<nav>
+			<span class="snipcart-summary">
+			    Number of items: <span class="snipcart-total-items"></span>
+			    Total price: <span class="snipcart-total-price"></span>
+			</span>
+
+			<a href="#" class="snipcart-checkout">View cart</a>
+		</nav>
+
+		<p>
+			<label>FINISH + (COLOR)</label>
+
+			<select id="product-finish-color" data-customfield="1">
+				<option>No Finish|Wax - (Clear)</option>
+				<option>Wax - (Tudor Brown)</option>
+				<option>Wax - (Golden Oak)</option>
+			</select>
+		</p>
+
+		<p>
+			<label>DESIRED DIMENSION</label>
+
+			<select id="product-dimension" data-customfield="2">
+				<option>As Is</option>
+				<option>Custom Cut</option>
+			</select>
+		</p>
+
+		<p>
+			<label>LENGTH IN INCHES: (Custom Cut Only)</label>
+
+			<input type="text" id="product-length" />
+		</p>
+
+		<p>
+			<label>TERMS By checking this box, I have read and agree to the <a href='http://www.google.com' class='real-link'>Terms &amp; Conditions</a></label>
+
+			<input type="checkbox" id="accept-terms" />
+		</p>
+
+		<p>
+			<a href="#" class="snipcart-add-item"
+				data-item-name="Test Fireplace Mantel"
+				data-item-id="007"
+				data-item-description="This is the cart description"
+				data-item-price="500.00"
+				data-item-custom1-name="FINISH + (COLOR)"
+				data-item-custom1-options="No Finish|Wax - (Clear)[+100.00]|Wax - (Teak)[+100.00]|Wax - (Tudor Brown)[+100.00]|Wax - (Golden Oak)[+100.00]|Wax - (Antique Mahogany)|Wax - (Light Brown)[+100.00]|Wax - (Rustic Pine)[+100.00]|Wax - (Ebony)[+100.00]|Wax - (Lime)[+100.00]|Water-Based Poly - (Natural)[+100.00]|Oil-Based Poly - (Natural)[+100.00]|Oil Sealer - (Natural)[+100.00]"
+				data-item-custom2-name="DESIRED DIMENSION"
+				data-item-custom2-options="As Is|Custom Cut[+35.00]"
+				data-item-custom3-name="LENGTH IN INCHES: (Custom Cut Only)"
+				data-item-custom3-required="false"
+				data-item-custom4-name="TERMS By checking this box, I have read and agree to the <a href='http://www.google.com' class='real-link'>Terms &amp; Conditions</a>"
+				data-item-custom4-options="true|false"
+				data-item-custom4-required="true"
+				data-item-url="/products/fireplace-mantels/shop/details/test-fireplace-mantel">
+			    Add to Cart</a>
+		</p>
+
+		<script type="text/javascript">
+			$(function() {
+				$("select").change(function() {
+					var field_index = $(this).data("customfield");
+					var field = "item-custom" + field_index + "-value";
+
+					$(".snipcart-add-item").data(field, $(this).val());
+				});
+
+				$("#product-length").change(function() {
+					$(".snipcart-add-item").data('item-custom3-value', $(this).val());
+				});
+
+				$("#accept-terms").click(function() {
+					if ($(this).is(":checked")) {
+						$(".snipcart-add-item").data("item-custom4-value", "true");
+					} else {
+						$(".snipcart-add-item").data("item-custom4-value", "false");
+					}
+				});
+			});
+
+			Snipcart.execute("bind", "item.adding", function (ev, item) {
+				if (!item.customFields[3].value) {
+					alert("You must accept terms");
+					ev.preventDefault();
+				}
+			});
+		</script>
+
+		<style>
+			.snipcart-item-customfields {
+				display: none;
+			}
+		</style>
+	</body>
+</html>

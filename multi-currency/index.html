@@ -12,6 +12,15 @@
       src="https://cdn.snipcart.com/scripts/snipcart.js"
       data-api-key="YjdiNWIyOTUtZTIyMy00MWMwLTkwNDUtMzI1M2M2NTgxYjE0"></script>
 
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+<!-- Optional theme -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
+
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+
     <link type="text/css"
       id="snipcart-theme"
       href="https://cdn.snipcart.com/themes/base/snipcart.min.css" 
@@ -19,31 +28,55 @@
   </head>
 
   <body>
-    <nav>
-      <span class="snipcart-summary">
-        Number of items: <span class="snipcart-total-items"></span>
-        Total price: <span class="snipcart-total-price"></span>
-      </span>
-      
-      <span>
-        <select id="currency">
-          <option value="cad">CAD</option>
-          <option value="usd">USD</option>
-          <option value="eur">EUR</option>
-        </select>
-      </span>
-      
-      <a href="#" class="snipcart-checkout">View cart</a>
-    </nav>
+      <div class="container">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <a class="navbar-brand" href="#">
+                Snipcart
+              </a>
+            </div>
+            <ul class="nav navbar-nav navbar-left">
+              <li class="navbar-form">
+                <div class="form-group">
+                  <select id="currency" class="form-control">
+                    <option value="cad">CAD</option>
+                    <option value="usd">USD</option>
+                    <option value="eur">EUR</option>
+                  </select>
+                </div>
+              </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right snipcart-summary">
+              <li>
+                <a href="#" class="snipcart-checkout">
+                  View cart
+                  <span class="badge snipcart-total-items"></span>
+                  <span class="snipcart-total-price"></span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </nav>
+    </div>
     
-    <div>
-      <button type="button" class="snipcart-add-item"
-        data-item-name="Item"
-        data-item-price='{"usd": 20.00, "cad": 30.00, "eur": 25.00}'
-        data-item-id="ITEM"
-        data-item-url="/multi-currency">
-        Buy now
-      </button>
+    <div class="container">
+      <div class="jumbotron">
+        <h1>Hello, friend!</h1>
+        <p>
+          Buy our super dummy item in your favorite currency on our basic demo!
+        </p>
+        <p>
+          <button type="button" class="snipcart-add-item btn btn-primary btn-lg"
+            data-item-name="Item"
+            data-item-price='{"usd": 20.00, "cad": 30.00, "eur": 25.00}'
+            data-item-id="ITEM"
+            data-item-url="/multi-currency">
+            Buy now
+          </button>
+        </p>
+      </div>
+      
     </div>
     
     <script>
@@ -52,7 +85,7 @@
       });
       
       Snipcart.subscribe('currency.changed', function (currency) {
-        $('#currency').val(curency);
+        $('#currency').val(currency);
       });
       
       $(function() {

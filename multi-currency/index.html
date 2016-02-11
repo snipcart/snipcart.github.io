@@ -47,7 +47,11 @@
     </div>
     
     <script>
-      Snipcart.subscribe('currency.set', function (currency) {
+      Snipcart.subscribe('cart.ready', function() {
+        $('#currency').val(Snipcart.api.getCurrentCurrency());
+      });
+      
+      Snipcart.subscribe('currency.changed', function (currency) {
         $('#currency').val(curency);
       });
       

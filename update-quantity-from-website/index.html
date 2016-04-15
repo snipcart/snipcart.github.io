@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <title>
+      How to adjust quantity and custom fields manually
+    </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="YjdiNWIyOTUtZTIyMy00MWMwLTkwNDUtMzI1M2M2NTgxYjE0"></script>
+    <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" type="text/css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+    <nav>
+      <span class="snipcart-summary">
+          Number of items: <span class="snipcart-total-items"></span>
+          Total price: <span class="snipcart-total-price"></span>
+      </span>
+
+      <a href="#" class="snipcart-checkout">View cart</a>
+    </nav>
+
+    <p>
+      <label>Quantity</label>
+      <input type="number" id="quantity" min="100" />
+    </p>
+
+    <p>
+      <button type="button"
+        class="snipcart-add-item"
+        data-item-name="Item"
+        data-item-price="10"
+        data-item-min-quantity="100"
+        data-item-id="MIN-QTY"
+        data-item-url="/update-quantity-from-website">Buy it now</button>
+    </p>
+
+    <script type="text/javascript">
+      $(function() {
+        $('#quantity').change(function() {
+          $('[data-item-id="MIN-QTY"]').data('item-quantity', $(this).val());
+        });
+      });
+    </script>
+  </body>
+</html>

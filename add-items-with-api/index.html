@@ -1,0 +1,69 @@
+<html>
+  <head>
+    <title>
+      How to adjust quantity and custom fields manually
+    </title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
+    <script src="https://cdn.snipcart.com/scripts/2.0/snipcart.js" id="snipcart" data-api-key="YjdiNWIyOTUtZTIyMy00MWMwLTkwNDUtMzI1M2M2NTgxYjE0"></script>
+    <link href="https://cdn.snipcart.com/themes/2.0/base/snipcart.min.css" type="text/css" rel="stylesheet" />
+
+  </head>
+
+  <body>
+    <nav>
+      <span class="snipcart-summary">
+          Number of items: <span class="snipcart-total-items"></span>
+          Total price: <span class="snipcart-total-price"></span>
+      </span>
+
+      <a href="#" class="snipcart-checkout">View cart</a>
+    </nav>
+
+    <p>
+      <label>Quantity</label>
+      <input type="number" id="quantity" min="100" />
+    </p>
+
+    <p>
+      <button type="button" class="add-item">Add item</button>
+
+      <button type="button"
+        class="snipcart-add-item"
+        style="display:none"
+        data-item-name="Item"
+        data-item-price="10"
+        data-item-id="123"
+        data-item-url="/add-items-with-api"></button>
+    </p>
+
+    <script type="text/javascript">
+      Snipcart.subscribe('ready', function() {
+        $('.add-item').click(function (ev) {
+          ev.preventDefault();
+
+          var qty = $('#quantity').val();
+
+          if (isNaN(qty) || qty == 0) {
+            qty = 1;
+          }
+
+          Snipcart.api.items.add({
+            name: 'Item',
+            quantity: qty,
+            id: '123',
+            price: 10,
+            url: '/add-items-with-api'
+          }).then (function (item) {
+            console.log ('Item has been added', item);
+          });
+        });
+      });
+      $(function() {
+        $('.add-item').click(function() {
+
+        });
+      });
+    </script>
+  </body>
+</html>

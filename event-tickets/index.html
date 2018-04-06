@@ -12,7 +12,7 @@
 	<script type="text/javascript">
 		document.addEventListener('snipcart.ready', function() {
 			Snipcart.subscribe('item.adding', function(ev, item) {
-				if(item.id == 'jam-conf-qc' && item.quantity > 1) {
+				if(item.id == 'jam-conf-qc') {
 					ev.preventDefault();
 
 					var quantity = item.quantity;

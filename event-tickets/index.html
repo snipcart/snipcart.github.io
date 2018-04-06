@@ -12,7 +12,6 @@
 	<script type="text/javascript">
 		document.addEventListener('snipcart.ready', function() {
 			Snipcart.subscribe('item.adding', function(ev, item) {
-				console.log('adding', item);
 				if(item.id == 'jam-conf-qc' && item.quantity > 1) {
 					ev.preventDefault();
 
@@ -21,22 +20,20 @@
 
 					Snipcart.api.configure('show_cart_automatically', false);
 
-					Snipcart.api.items.add((new Array(quantity)).fill(undefined).map(function() {
-						return {
-							id: item.id,
-							name: item.name,
-							price: item.price,
-							url: item.url,
-							customFields: item.customFields,
-							stackable: false,
-							shippable: item.shippable,
-						};
+					Snipcart.api.items.add(new Array(quantity).fill({
+						id: item.id,
+						name: item.name,
+						price: item.price,
+						url: item.url,
+						customFields: item.customFields,
+						stackable: false,
+						shippable: item.shippable,
 					})).then(function(){
 						Snipcart.api.configure('show_cart_automatically', true);
 						Snipcart.api.modal.show();
 					});
 				}
-			})
+			});
 		});
 		$(function() {
 			var btn = $('#buy-button');
@@ -129,6 +126,7 @@
 		}
 		button {
 			font-family: inherit;
+			font-size: 0.8em;
 		}
 	</style>
 </head>
